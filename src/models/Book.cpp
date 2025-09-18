@@ -64,7 +64,7 @@ void Book::detailedDisplay() const {
 }
 string Book::toString() const {
     ostringstream oss;
-    oss << Resource::toString() << "," << yearPublished << "," << numberPages
-        << "," << collection << "," << summary;
+    oss << Resource::toString() << ";" << yearPublished << ";" << numberPages
+        << ";" << collection << ";" << summary;
     return oss.str();
 }

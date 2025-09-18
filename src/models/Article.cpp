@@ -34,5 +34,5 @@ void Article::detailedDisplay() const {
     cout << "Article Name: " << name << endl;
 }
 string Article::toString() const {
-    return Review::toString() + "," + name;
+    return Review::toString() + ";" + name;
 }

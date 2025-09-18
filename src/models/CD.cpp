@@ -33,6 +33,6 @@ void CD::detailedDisplay() const {
     cout << "Number of Tracks: " << numberTracks << endl;
 }
 string CD::toString() const {
-    return VHS::toString() + "," + to_string(numberTracks);
+    return VHS::toString() + ";" + to_string(numberTracks);
 }
 

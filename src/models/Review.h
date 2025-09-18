@@ -28,7 +28,7 @@ class Review : public Book {
         std::string toString() const;
 
         // Méthodes de recherche
-        static std::string getType() {
+        std::string getType() const override {
             return "Review";
         }
 };

@@ -1,7 +1,3 @@
-//
-// Created by Eloise Le Blanc on 18/09/2025.
-//
-
 #include "DigitalResource.h"
 #include <iostream>
 #include <sstream>
@@ -54,5 +50,5 @@ void DigitalResource::detailedDisplay() const {
     cout << "Path: " << path << endl;
 }
 string DigitalResource::toString() const {
-    return Resource::toString() + "," + type + "," + to_string(bytes) + "," + path;
+    return Resource::toString() + ";" + type + ";" + to_string(bytes) + ";" + path;
 }

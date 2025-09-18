@@ -43,5 +43,5 @@ void VHS::detailedDisplay() const {
     cout << "Production Company: " << productionCompany << endl;
 }
 string VHS::toString() const {
-    return Resource::toString() + "," + to_string(secondesDuration) + "," + productionCompany;
+    return Resource::toString() + ";" + to_string(secondesDuration) + ";" + productionCompany;
 }

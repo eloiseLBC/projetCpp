@@ -44,7 +44,7 @@ void Review::detailedDisplay() const {
     cout << "Number of Articles: " << numberArticles << endl;
 }
 string Review::toString() const {
-    return Book::toString() + "," + editor + "," + to_string(numberArticles);
+    return Book::toString() + ";" + editor + ";" + to_string(numberArticles);
 }
 
 

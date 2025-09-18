@@ -31,9 +31,9 @@ class DigitalResource : public Resource {
         std::string toString() const;
 
         // Méthodes de recherche
-    static std::string getType() {
-        return "Digital Resource";
-    }
+        std::string getType() const override {
+            return "Digital Resource";
+        }
 };
 
 

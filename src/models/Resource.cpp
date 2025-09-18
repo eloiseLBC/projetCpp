@@ -79,7 +79,7 @@ void Resource::detailedDisplay() const {
 }
 
 string Resource::toString() const {
-    return id + "," + title + "," + author + "," + (borrowed ? "1" : "0");
+    return getType() + ";" + id + ";" + title + ";" + author + ";" + (borrowed ? "1" : "0");
 }
 
 // Méthodes de recherche

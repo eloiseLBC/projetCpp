@@ -1,11 +1,9 @@
 #include <iostream>
 
-#include "Book.h"
-#include "CD.h"
-#include "DigitalResource.h"
-#include "DVD.h"
-#include "VHS.h"
-#include "Article.h"
+#include "models/Book.h"
+#include "models/VHS.h"
+#include "models/Article.h"
+#include "models/DigitalResource.h"
 
 using namespace std;
 
@@ -14,6 +12,7 @@ int main() {
     // b1.detailedDisplay();
     // b1.compactedDisplay();
     // cout << "Type: " << b1.getType() << endl;
+    // cout << "String Representation: " << b1.toString() << endl;
 
     // VHS v1("Inception", "Christopher Nolan", true, 8880, "Warner Bros.");
     // v1.detailedDisplay();
@@ -33,17 +32,14 @@ int main() {
     DigitalResource dr1("E-book on C++", "Bjarne Stroustrup", false, "PDF", 2048000, "/ebooks/cpp.pdf");
     dr1.detailedDisplay();
     dr1.compactedDisplay();
-    cout << "Type: " << dr1.getType() << endl;
-    cout << "Bytes: " << dr1.getBytes() << endl;
-    cout << "Path: " << dr1.getPath() << endl;
-    cout << "Author: " << dr1.getAuthor() << endl;
+    cout << "String Representation: " << dr1.toString() << endl;
 
-    // Article a1("Science Today", "Various Authors", true, 2023, 120, "Science", "A monthly science magazine.", "SciMag Publishers", 5, "The Future of AI");
-    // a1.detailedDisplay();
-    // a1.compactedDisplay();
-    // cout << "Name: " << a1.getName() << endl;
-    // cout << "Type: " << a1.getType() << endl;
-    // cout << "String Representation: " << a1.toString() << endl;
+    Article a1("Science Today", "Various Authors", true, 2023, 120, "Science", "A monthly science magazine.", "SciMag Publishers", 5, "The Future of AI");
+    a1.detailedDisplay();
+    a1.compactedDisplay();
+    cout << "Name: " << a1.getName() << endl;
+    cout << "Type: " << a1.getType() << endl;
+    cout << "String Representation: " << a1.toString() << endl;
 
     return 0;
 }

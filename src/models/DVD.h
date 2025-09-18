@@ -11,7 +11,7 @@ class DVD : public CD{
         DVD(const std::string& title, const std::string& author, bool borrowed,
            int secondesDuration, int numberTracks, const std::string& productionCompany);
         // Méthodes de recherche
-        static std::string getType() {
+        std::string getType() const override {
             return "DVD";
         }
 };

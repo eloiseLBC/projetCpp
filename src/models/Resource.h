@@ -34,8 +34,7 @@ class Resource {
 
         // Méthodes de recherche
         bool contains(std::string search);
-        std::string getType() const;
-
+        virtual std::string getType() const { return "Resource"; }
 };
 
 #endif //PROJETCPP_RESOURCE_H

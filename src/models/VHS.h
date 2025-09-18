@@ -28,7 +28,7 @@ class VHS : public Resource{
         std::string toString() const;
 
         // Méthodes de recherche
-        static std::string getType() {
+        std::string getType() const override {
             return "VHS";
         }
 
