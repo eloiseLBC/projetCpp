@@ -49,6 +49,7 @@ void TestBook::runAllTests() {
         Book b("1984", "George Orwell", false, 1949, 328, "Dystopian", "A classic");
         is_true(b.contains("1984"),   "Search by title");
         is_true(b.contains("George"), "Search by author");
+        is_true(b.contains("Dystopian"), "Search by collection");
         is_true(!b.contains("xyz"),   "Search non-existent");
     }
 }

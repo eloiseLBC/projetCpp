@@ -31,6 +31,8 @@ class Review : public Book {
         std::string getType() const override {
             return "Review";
         }
+        bool contains(const std::string& search);
+
 };
 
 #endif //PROJETCPP_REVIEW_H

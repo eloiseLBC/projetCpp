@@ -29,6 +29,7 @@ class Article : public Review {
         std::string getType() const override {
             return "Article";
         }
+        bool contains(const std::string& search);
 
 };
 

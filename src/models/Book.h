@@ -36,6 +36,7 @@ class Book : public Resource {
         // Méthodes de recherche
         std::string getType() const override {
             return "Book";
-        };
+        }
+        bool contains(const std::string& search);
 };
 #endif //PROJETCPP_BOOK_H

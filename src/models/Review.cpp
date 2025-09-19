@@ -47,4 +47,13 @@ string Review::toString() const {
     return Book::toString() + ";" + editor + ";" + to_string(numberArticles);
 }
 
+bool Review::contains(const std::string &search) {
+    return getTitle().find(search) != std::string::npos ||
+           getAuthor().find(search) != std::string::npos ||
+           editor.find(search) != std::string::npos ||
+           getCollection().find(search) != std::string::npos ||
+           getSummary().find(search) !=  std::string::npos ;
+}
+
+
 

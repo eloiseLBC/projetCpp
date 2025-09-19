@@ -36,3 +36,12 @@ void Article::detailedDisplay() const {
 string Article::toString() const {
     return Review::toString() + ";" + name;
 }
+
+bool Article::contains(const string& search) {
+    return getTitle().find(search) != std::string::npos ||
+            getAuthor().find(search) != std::string::npos ||
+            getEditor().find(search) !=  std::string::npos ||
+            getCollection().find(search) !=  std::string::npos ||
+            name.find(search) != std::string::npos ||
+            getSummary().find(search) != std::string::npos;
+}

@@ -68,3 +68,10 @@ string Book::toString() const {
         << ";" << collection << ";" << summary;
     return oss.str();
 }
+
+bool Book::contains(const string& search) {
+    return getTitle().find(search) != std::string::npos ||
+            getAuthor().find(search) != std::string::npos ||
+            collection.find(search) != std::string::npos ||
+            summary.find(search) != std::string::npos;
+}
