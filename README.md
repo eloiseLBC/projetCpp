@@ -1,11 +1,3 @@
-# Objectif du projet
-L’objectif du projet est de mettre en œuvre les notions appréhendées durant l’enseignement
-de ce module. Durant cet enseignement nous avons acquis les notions de base de la
-conception/programmation orientée objets appliquées au langage C++.
-
-
-# Diagramme UML
-```mermaid
 ---
 config:
   theme: neo
@@ -31,10 +23,10 @@ class Library {
 
     class Resource {
         -int id
-	    -String title
-	    -String author
+        -String title
+        -String author
         -bool borrowed
-	    +Resource()
+        +Resource()
         +bool contains(String search)
         +void compactedDisplay()
         +void detailledDisplay()
@@ -43,22 +35,22 @@ class Library {
     }
 
     class Book {
-	    -int yearPublished
-	    -int numberPages
-	    -String collection
-	    -String summary
+        -int yearPublished
+        -int numberPages
+        -String collection
+        -String summary
     }
 
     class CD {
-	    -int secondesDuration
-	    -int numberTracks
-	    -String productionCompany
+        -int secondesDuration
+        -int numberTracks
+        -String productionCompany
     }
 
     class VHS {
-	    -int secondesDuration
-	    -int numberTracks
-	    -String productionCompany
+        -int secondesDuration
+        -int numberTracks
+        -String productionCompany
     }
     
     class DigitalResource {
@@ -68,8 +60,8 @@ class Library {
     }
 
     class Review {
-	    -String editor
-	    -int numberArticles
+        -String editor
+        -int numberArticles
     }
 
     class Article {
@@ -86,6 +78,5 @@ class Library {
     Resource <|-- DigitalResource
     Book <|-- Review
     VHS <|-- DVD
-    Library <|-- Resource
+    Library "1"<--"*" Resource
     Review *-- Article
-```
