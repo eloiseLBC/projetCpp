@@ -34,6 +34,7 @@ class DigitalResource : public Resource {
         std::string getType() const override {
             return "Digital Resource";
         }
+        bool contains(const std::string& search);
 };
 
 

@@ -52,3 +52,9 @@ void DigitalResource::detailedDisplay() const {
 string DigitalResource::toString() const {
     return Resource::toString() + ";" + type + ";" + to_string(bytes) + ";" + path;
 }
+
+bool DigitalResource::contains(const string& search) {
+    return Resource::contains(search) ||
+           type.find(search) != string::npos ||
+           path.find(search) != string::npos ;
+}

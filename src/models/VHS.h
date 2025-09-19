@@ -32,6 +32,8 @@ class VHS : public Resource{
             return "VHS";
         }
 
+        bool contains(const std::string &search);
+
 };
 
 

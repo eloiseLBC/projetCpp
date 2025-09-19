@@ -69,9 +69,9 @@ string Book::toString() const {
     return oss.str();
 }
 
+// Méthodes de recherche
 bool Book::contains(const string& search) {
-    return getTitle().find(search) != std::string::npos ||
-            getAuthor().find(search) != std::string::npos ||
+    return Resource::contains(search) ||
             collection.find(search) != std::string::npos ||
             summary.find(search) != std::string::npos;
 }

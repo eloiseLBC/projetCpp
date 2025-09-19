@@ -58,6 +58,7 @@ void TestVHS::runAllTests() {
         VHS v("Inception", "Christopher Nolan", true, 8880, "Warner Bros.");
         is_true(v.contains("Inception"),   "Search by title");
         is_true(v.contains("Christopher"), "Search by author");
+        is_true(v.contains("Warner"),      "Search by studio");
         is_true(!v.contains("xyz"),        "Search non-existent");
     }
 }

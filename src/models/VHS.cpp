@@ -45,3 +45,9 @@ void VHS::detailedDisplay() const {
 string VHS::toString() const {
     return Resource::toString() + ";" + to_string(secondesDuration) + ";" + productionCompany;
 }
+
+// Méthodes de recherche
+bool VHS::contains(const string& search) {
+    return Resource::contains(search) ||
+           productionCompany.find(search) != string::npos;
+}

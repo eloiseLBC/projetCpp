@@ -36,3 +36,7 @@ string CD::toString() const {
     return VHS::toString() + ";" + to_string(numberTracks);
 }
 
+// Méthodes de recherche
+bool CD::contains(const string& search) {
+    return VHS::contains(search);
+}

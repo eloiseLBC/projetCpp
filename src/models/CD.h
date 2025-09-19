@@ -28,6 +28,7 @@ class CD : public VHS {
         std::string getType() const override {
             return "CD";
         }
+        bool contains(const std::string &search);
 
 };
 
