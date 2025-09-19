@@ -13,24 +13,24 @@ config:
 ---
 classDiagram
 direction TB
-class Library {
--Array allResources
--Array displayedResources
-+void addResource()
-+void loadFromFile(String filename)
-+void saveToFile(String filename)
-+void search(String string)
-+void clearSearch()
-+void showDisplayedResources()
-+void showDetailledDisplay(int id)
-+void deleteId(int id)
-+void reset()
-+void borrow(int id)
-+void return(int id)
-}
+    class Library {
+        -Array allResources
+        -Array displayedResources
+        +void addResource()
+        +void loadFromFile(String filename)
+        +void saveToFile(String filename)
+        +void search(String string)
+        +void clearSearch()
+        +void showDisplayedResources()
+        +void showDetailledDisplay(int id)
+        +void deleteId(int id)
+        +void reset()
+        +void borrow(int id)
+        +void returnResource(int id)
+    }
 
     class Resource {
-        -int id
+        -String id
 	    -String title
 	    -String author
         -bool borrowed
@@ -49,15 +49,8 @@ class Library {
 	    -String summary
     }
 
-    class CD {
-	    -int secondesDuration
-	    -int numberTracks
-	    -String productionCompany
-    }
-
     class VHS {
 	    -int secondesDuration
-	    -int numberTracks
 	    -String productionCompany
     }
     
@@ -76,16 +69,16 @@ class Library {
         -String name
     }
 
-    class DVD {
+    class CD {
         -int numberTracks
     }
 
     Resource <|-- Book
-    Resource <|-- CD
     Resource <|-- VHS
     Resource <|-- DigitalResource
     Book <|-- Review
-    VHS <|-- DVD
+    VHS <|-- CD
+    CD <|-- DVD
     Library "1"<--"*" Resource
     Review *-- Article
 ```
