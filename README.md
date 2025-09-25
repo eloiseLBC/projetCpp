@@ -1,9 +1,13 @@
+# Gestion de bibliothèque - Diagrammes UML
+## Diagramme de classes
+```mermaid
 ---
 config:
   theme: neo
   look: neo
 ---
 classDiagram
+    
 direction TB
     class Library {
         -Array allResources
@@ -75,7 +79,7 @@ direction TB
     Review *-- Article
 ```
 
-# Diagramme Usecases
+## Diagramme Usecases
 ```mermaid
 ---
 config:
@@ -137,11 +141,12 @@ User[Utilisateur<br/>Bibliothécaire]
     UC6 -.->|remplace| UC3
 ```
 
-# Diagramme de séquences
+## Diagramme de séquences
 ```mermaid
 ---
 config:
-  theme: redux-color
+theme: neo
+look: neo
 ---
 sequenceDiagram
 participant Utilisateur
