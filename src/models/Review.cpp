@@ -9,10 +9,10 @@ Review::Review() : Book() {
     this->editor = "Unknown";
     this->numberArticles = 0;
 }
-Review::Review(const string& title, const string& author, bool borrowed,
+Review::Review(const string& title, const string& author,
                int publicationYear, int numberPages, const string& genre,
                const string& summary, const string& editor, int numberArticles)
-    : Book(title, author, borrowed, publicationYear, numberPages, genre, summary) {
+    : Book(title, author, publicationYear, numberPages, genre, summary) {
     this->editor = editor;
     this->numberArticles = numberArticles;
 }

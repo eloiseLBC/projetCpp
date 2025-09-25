@@ -14,7 +14,7 @@ class Resource {
     public:
         // Constructors
         Resource(); // Default constructor
-        Resource(const std::string& title, const std::string& author, bool borrowed);
+        Resource(const std::string& title, const std::string& author);
 
         // Getters
         std::string getId();

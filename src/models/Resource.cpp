@@ -28,11 +28,11 @@ Resource::Resource() {
     this->borrowed = false;
 }
 
-Resource::Resource(const string& title, const string& author, const bool borrowed) {
+Resource::Resource(const string& title, const string& author) {
     this->id = Resource::generateUID();
     this->title = title;
     this->author = author;
-    this->borrowed = borrowed;
+    this->borrowed = 0;
 }
 
 // Getters

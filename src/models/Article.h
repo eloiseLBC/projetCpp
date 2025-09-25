@@ -10,7 +10,7 @@ class Article : public Review {
         using Review::Review; // héritage de Review
         // Constructors
         Article();
-        Article(const std::string& title, const std::string& author, bool borrowed,
+        Article(const std::string& title, const std::string& author,
                 int publicationYear, int numberPages, const std::string& genre,
                 const std::string& summary, const std::string& editor, int numberArticles,
                 const std::string& name);

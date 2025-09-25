@@ -1,5 +1,4 @@
 #include "library.hpp"
-#include "resource.hpp"
 #include "utils.hpp"
 #include <iostream>
 #include <string>
@@ -41,7 +40,6 @@ void Library::addResource(string type) {
             std::cout << "Entrez le nom de la collection: ";
             std::cin >> collection;
             int nbOfpages = utils::readInt("Entrez le nombre de pages du livre: ");
-            
             
             string summary;
             std::cout << "Entrez le résumé du livre: ";

@@ -9,9 +9,9 @@ VHS::VHS() : Resource() {
     this->secondesDuration = 0;
     this->productionCompany = "Unknown";
 }
-VHS::VHS(const string& title, const string& author, bool borrowed,
+VHS::VHS(const string& title, const string& author,
          int secondesDuration, const string& productionCompany)
-    : Resource(title, author, borrowed) {
+    : Resource(title, author) {
     this->secondesDuration = secondesDuration;
     this->productionCompany = productionCompany;
 }

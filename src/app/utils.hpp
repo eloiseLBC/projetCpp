@@ -1,5 +1,5 @@
 #pragma once
-#include "resource.hpp"
+#include "../models/Resource.h"
 #include <string>
 
 #include <vector>

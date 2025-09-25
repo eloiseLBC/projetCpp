@@ -1,5 +1,13 @@
-#pragma once
-#include "resource.hpp"
+#ifndef PROJETCPP_LIBRARY_HPP
+#define PROJETCPP_LIBRARY_HPP
+#include "../models/Resource.h"
+#include "../models/Book.h"
+#include "../models/CD.h"
+#include "../models/DVD.h"
+#include "../models/Article.h"
+#include "../models/Review.h"
+#include "../models/VHS.h"
+#include "../models/DigitalResource.h"
 #include <array>
 #include <vector>
 #include <memory>
@@ -29,3 +37,5 @@ class Library{
     void returnResource(string id);
     int getDisplayedElementsSize();
 };
+
+#endif

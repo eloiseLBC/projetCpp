@@ -1,6 +1,13 @@
 
 #include "utils.hpp"
-
+#include "../models/Resource.h"
+#include "../models/Book.h"
+#include "../models/CD.h"
+#include "../models/DVD.h"
+#include "../models/Article.h"
+#include "../models/Review.h"
+#include "../models/VHS.h"
+#include "../models/DigitalResource.h"
 #include <iostream>
 #include <string>
 #include <stdexcept>
@@ -70,6 +77,17 @@ ResourcePtr utils::createResourceFromTokens(const std::vector<std::string>& toke
         const std::string& summary = tokens[6];
 
         return std::make_shared<Book>(title, author, year, nbOfpages, collection, summary);
+    } else if (type == "CD") {
+        // check that we have the right number of tockens
+        if (tokens.size() != 6)   // type + 4 parameters
+            throw std::runtime_error("Mauvais nombre d’attributs pour Book");
+        const std::string& title  = tokens[1];
+        const std::string& author = tokens[2];
+        int                 secondesDuration   = std::stoi(tokens[3]);   // conversion string → int
+        int              numberTracks  = std::stoi(tokens[4]);   // conversion string → double
+        const std::string& productionCompany = tokens[5];
+
+        return std::make_shared<CD>(title, author, secondesDuration, numberTracks, productionCompany);
     }
 
     

@@ -12,9 +12,9 @@ Book::Book() : Resource() {
     this->summary = "No summary available.";
 }
 
-Book::Book(const string& title, const string& author, bool borrowed,
+Book::Book(const string& title, const string& author,
            int yearPublished, int numberPages, const string& collection, const string& summary)
-    : Resource(title, author, borrowed) {
+    : Resource(title, author) {
     this->yearPublished = yearPublished;
     this->numberPages = numberPages;
     this->collection = collection;
