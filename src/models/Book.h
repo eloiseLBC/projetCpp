@@ -13,7 +13,7 @@ class Book : public Resource {
         using Resource::Resource; // héritage de Resource
         // Constructors
         Book(); // Default constructor
-        Book(const std::string& title, const std::string& author, bool borrowed,
+        Book(const std::string& title, const std::string& author,
              int yearPublished, int numberPages, const std::string& collection, const std::string& summary);
 
         // Getters

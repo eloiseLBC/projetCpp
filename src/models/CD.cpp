@@ -8,9 +8,9 @@ using namespace std;
 CD::CD() : VHS() {
     this->numberTracks = 0;
 }
-CD::CD(const string& title, const string& author, bool borrowed,
+CD::CD(const string& title, const string& author,
        int secondesDuration, int numberTracks, const string& productionCompany)
-    : VHS(title, author, borrowed, secondesDuration, productionCompany) {
+    : VHS(title, author, secondesDuration, productionCompany) {
     this->numberTracks = numberTracks;
 }
 

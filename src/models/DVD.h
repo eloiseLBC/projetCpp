@@ -8,7 +8,7 @@ class DVD : public CD{
         using CD::CD; // héritage de CD
         // Constructors
         DVD(); // Default constructor
-        DVD(const std::string& title, const std::string& author, bool borrowed,
+        DVD(const std::string& title, const std::string& author,
            int secondesDuration, int numberTracks, const std::string& productionCompany);
         // Méthodes de recherche
         std::string getType() const override {

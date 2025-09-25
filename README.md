@@ -1,11 +1,3 @@
-# Objectif du projet
-L’objectif du projet est de mettre en œuvre les notions appréhendées durant l’enseignement
-de ce module. Durant cet enseignement nous avons acquis les notions de base de la
-conception/programmation orientée objets appliquées au langage C++.
-
-
-# Diagramme UML
-```mermaid
 ---
 config:
   theme: neo
@@ -34,7 +26,7 @@ direction TB
 	    -String title
 	    -String author
         -bool borrowed
-	    +Resource()
+        +Resource()
         +bool contains(String search)
         +void compactedDisplay()
         +void detailledDisplay()
@@ -43,10 +35,10 @@ direction TB
     }
 
     class Book {
-	    -int yearPublished
-	    -int numberPages
-	    -String collection
-	    -String summary
+        -int yearPublished
+        -int numberPages
+        -String collection
+        -String summary
     }
 
     class VHS {
@@ -61,8 +53,8 @@ direction TB
     }
 
     class Review {
-	    -String editor
-	    -int numberArticles
+        -String editor
+        -int numberArticles
     }
 
     class Article {

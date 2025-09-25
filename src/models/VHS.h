@@ -11,7 +11,7 @@ class VHS : public Resource{
         using Resource::Resource; // héritage de Resource
         // Constructors
         VHS(); // Default constructor
-        VHS(const std::string& title, const std::string& author, bool borrowed,
+        VHS(const std::string& title, const std::string& author,
            int secondesDuration, const std::string& productionCompany);
 
         // Getters

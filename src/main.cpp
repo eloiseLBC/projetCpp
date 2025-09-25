@@ -1,45 +1,124 @@
 #include <iostream>
+#include <string>
+#include "app/utils.hpp"
+#include "./app/library.hpp"
+#include "models/Resource.hpp"
 
-#include "models/Book.h"
-#include "models/VHS.h"
-#include "models/Article.h"
-#include "models/DigitalResource.h"
 
-using namespace std;
+const std::string menu = 
+"***********************************************\n"
+"********* BIENVENUE À LA BIBLIOTHÈQUE *********\n"
+"***********************************************\n"
+"Les commandes à votre disposition sont : \n"
+"- ADD type : vous permet d'ajouter un élément de type Type\n"
+"- LOAD filename : charge un fichier dans la bibliothèque. Attention: remplace les informations actuelles de la bibliothèque.\n"
+"- SAVE filename : sauvegarde la bibliothèque actuelle dans le fichier filename\n"
+"- LIST : affiche les données de la base de données ou les résultats d'une recherche\n"
+"- SEARCH chaîne : cherche la chaîne de caractères entrée dans les ressources de la bibliothèque\n"
+"- CLEAR : réinitialise la bibliothèque après une recherche\n"
+"- SHOW id : permet d'afficher les informations détaillées de la ressource sélectionnée\n"
+"- BORROW id : emprunte un livre (id)"
+"- RETURN id : retour d'un livre (id)"
+"- DELETE id : permet de supprimer une ressource selon son id\n"
+"- RESET : supprime toutes les ressources de la bibliothèque. La bibliothèque est vide. Il n'y a plus de ressources. Le vide de l'existence et le noir de la nuit.\n"
+"- BYE : Quitter l'application.\n"
+"***********************************************\n"
+"Entrez votre requête :\n"
+;
+
+enum class Command { ADD, LOAD, SAVE, LIST, SEARCH, CLEAR, SHOW, DELETE, RESET, BYE, Unknown };
+Command toCommand(const string& s) {
+    if (s == "ADD") return Command::ADD; 
+    if (s == "LOAD") return Command::LOAD; 
+    if (s == "SAVE") return Command::SAVE; 
+    if (s == "LIST") return Command::LIST; 
+    if (s == "SEARCH") return Command::SEARCH; 
+    if (s == "CLEAR") return Command::CLEAR; 
+    if (s == "SHOW") return Command::SHOW; 
+    if (s == "DELETE") return Command::DELETE; 
+    if (s == "RESET") return Command::RESET; 
+    if (s == "BYE") return Command::BYE; 
+    return Command::Unknown;
+}
 
 int main() {
-    // Book b1("1984", "George Orwell", false, 1949, 328, "Dystopian", "A dystopian social science fiction novel and cautionary tale about the dangers of totalitarianism.");
-    // b1.detailedDisplay();
-    // b1.compactedDisplay();
-    // cout << "Type: " << b1.getType() << endl;
-    // cout << "String Representation: " << b1.toString() << endl;
 
-    // VHS v1("Inception", "Christopher Nolan", true, 8880, "Warner Bros.");
-    // v1.detailedDisplay();
-    // v1.compactedDisplay();
-    // cout << "Type: " << v1.getType() << endl;
+    Library library = Library();
 
-    // CD c1("Thriller", "Michael Jackson", false, 2580, 9, "Epic Records");
-    // c1.detailedDisplay();
-    // c1.compactedDisplay();
-    // cout << "Type: " << c1.getType() << endl;
+    bool running = 1;
+    
+    std::vector<std::string> userAnswerVector;
+    Command command;
+    string commandArg;
 
-    // DVD d1("The Dark Side of the Moon", "Pink Floyd", true, 2580, 10, "Harvest Records");
-    // d1.detailedDisplay();
-    // d1.compactedDisplay();
-    // cout << "Type: " << d1.getType() << endl;
+    while (running) {
+        std::cout << menu;
+        string userAnswer;
+        std::getline(cin, userAnswer);
+        userAnswerVector = utils::split(userAnswer, ' ');
+        
+        if (userAnswerVector.empty()) {
+            // Nothing in the input, continue
+            continue;
+        }
+        command = toCommand(userAnswerVector[0]);
+        if(userAnswerVector.size()>2 ){
+            commandArg = utils::join(userAnswerVector, ' ', 1);
+        } else if (userAnswerVector.size() == 2) {
+            commandArg = userAnswerVector[1];
+        }
+        else {
+            commandArg = "";
+        }
 
-    DigitalResource dr1("E-book on C++", "Bjarne Stroustrup", false, "PDF", 2048000, "/ebooks/cpp.pdf");
-    dr1.detailedDisplay();
-    dr1.compactedDisplay();
-    cout << "String Representation: " << dr1.toString() << endl;
+        switch (command) {
+            case Command::BYE:
+                // Get out of the loop
+                running = 0;
+                break;
+            case Command::ADD:
+                // commandArg will be a type
+                library.addResource(commandArg);
+                break;
+            case Command::LOAD:
+                library.loadFromFile(commandArg);
+                break;
+            case Command::SAVE:
+                library.saveToFile(commandArg);
+                break; 
+            case Command::CLEAR:
+                if (commandArg != "") {
+                    std::cout << "\n Argument inconnu";
+                    break;
+                }
+                library.clearSearch();
+                break;
+            case Command::LIST:
+                if (commandArg != "") {
+                    std::cout << "\n Argument inconnu";
+                    break;
+                }
+                library.showDisplayedResources();
+                break;
+            case Command::SEARCH:
+                library.search(commandArg);
 
-    Article a1("Science Today", "Various Authors", true, 2023, 120, "Science", "A monthly science magazine.", "SciMag Publishers", 5, "The Future of AI");
-    a1.detailedDisplay();
-    a1.compactedDisplay();
-    cout << "Name: " << a1.getName() << endl;
-    cout << "Type: " << a1.getType() << endl;
-    cout << "String Representation: " << a1.toString() << endl;
+                std::cout << "Recherche effectuée."<< to_string(library.getDisplayedElementsSize()) <<" éléments trouvés. Tapez LIST pour voir les résultats de la recherche\n";
+                break;
+            case Command::SHOW:
+            case Command::DELETE:
+            case Command::RESET:
+            case Command::Unknown:
+            default:
+            std::cout << "Commande non reconnue. Merci d'entrer une commande valide\n";
+            break;
+        }
+        userAnswer = "";
+    }
+
+    std::cout << "Au revoir, à bientôt.\n";
+
+    // TODO nettoyer
 
     return 0;
 }

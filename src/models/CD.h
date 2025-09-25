@@ -10,7 +10,7 @@ class CD : public VHS {
         using VHS::VHS; // héritage de VHS
         // Constructors
         CD(); // Default constructor
-        CD(const std::string& title, const std::string& author, bool borrowed,
+        CD(const std::string& title, const std::string& author,
            int secondesDuration, int numberTracks, const std::string& productionCompany);
 
         // Getters
