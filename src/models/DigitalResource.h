@@ -12,7 +12,7 @@ class DigitalResource : public Resource {
     public:
         // Constructors
         DigitalResource();
-        DigitalResource(const std::string& title, const std::string& author, bool borrowed,
+        DigitalResource(const std::string& title, const std::string& author,
             const std::string& type, int bytes, const std::string& path);
 
         // Getters
