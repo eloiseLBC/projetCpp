@@ -10,7 +10,7 @@ DigitalResource::DigitalResource() : Resource() {
     this->path = "Unknown";
 }
 
-DigitalResource::DigitalResource(const string& title, const string& author, const bool borrowed, const string& type, int bytes, const string& path) : Resource(title, author, borrowed) {
+DigitalResource::DigitalResource(const string& title, const string& author, const string& type, int bytes, const string& path) : Resource(title, author) {
     this->type = type;
     this->bytes = bytes;
     this->path = path;
