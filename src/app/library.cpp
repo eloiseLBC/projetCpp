@@ -1,6 +1,7 @@
 #include "library.hpp"
 #include "utils.hpp"
 #include <iostream>
+#include <iterator>
 #include <string>
 #include <memory>
 #include <stdexcept>
@@ -128,7 +129,7 @@ void Library::addResource(string type) {
             string path;
             std::cout << "Entrez le chemin d'accès: ";
             std::cin >> path;
-            auto res = std::make_shared<DigitalResource>(name, author, false, typeOfDigitalResource, bytes, path);
+            auto res = std::make_shared<DigitalResource>(name, author, typeOfDigitalResource, bytes, path);
             allResources.push_back(std::move(res));
             displayedResources.push_back(std::move(res));
             break;
@@ -291,8 +292,88 @@ void Library::showDisplayedResources() {
 
 }
 
+void Library::showDetailedDisplay(string id) {
+    for (const auto& resPtr : allResources) {
+        if (resPtr->getId() == id) {
+            resPtr->detailedDisplay();
+            return;
+        }
+    }
+    cout << "Pas de ressource avec l'identifiant " << id << ".";
+}
 
+
+void Library::deleteId(string id) {
+    bool wasDeleted = false;
+    allResources.erase(std::remove_if(displayedResources.begin(), displayedResources.end(), [&](const ResourcePtr& r)
+    {
+        // If id is found, we show that we are deleting it and show what we are deleting
+        if(r->getId() == id) {
+            cout << "Ressource supprimée :\n";
+            r->compactedDisplay();
+            wasDeleted = true;
+        }
+        // Then we 
+        return r->getId() == id;
+    }));
+
+    // Displayed resources can't contain the resources if allResources didn't contain it
+    // So we only perform deletion on displayedResources if we deleted from allResources
+    if (wasDeleted) {
+        displayedResources.erase(std::remove_if(displayedResources.begin(), displayedResources.end(), [&](const ResourcePtr& r)
+        {
+            // Remove if the id is the same. (We do not clear the search that way)
+            return r->getId() == id;
+        }));
+    }
+
+    // Inform user if we didn't find anything
+    if (!wasDeleted) {
+        cout << "La ressource avec l'identifiant " << id << " n'a pas été trouvée. Aucune action effectuée.";
+    }
+}
+
+void Library::borrow(string id) {
+    shared_ptr<Resource> toBorrow;
+    for (const auto& resPtr : allResources) {
+        if (resPtr->getId() == id ) {
+            toBorrow = resPtr;
+        }     
+    }
+    if (toBorrow == NULL) {
+        cout << "Pas de ressource à cet identifiant. Aucune action effectuée\n";
+    } else if (toBorrow->getBorrowed()) {
+        cout << "Cette ressource a déjà été empruntée. Aucune action effectuée\n";
+    } else {
+        toBorrow->setBorrowed(true);
+        toBorrow->compactedDisplay();
+        cout << "Vous avez bien emprunté la ressource.\n";
+    }
+}
+
+void Library::returnResource(string id) {
+    shared_ptr<Resource> toReturn;
+    for (const auto& resPtr : allResources) {
+        if (resPtr->getId() == id ) {
+            toReturn = resPtr;
+        }     
+    }
+    if (toReturn == NULL) {
+        cout << "Pas de ressource à cet identifiant. Aucune action effectuée\n";
+    } else if (!toReturn->getBorrowed()) {
+        cout << "Cette ressource n'a pas été empruntée. Aucune action effectuée\n";
+    } else {
+        toReturn->setBorrowed(true);
+        toReturn->compactedDisplay();
+        cout << "Vous avez bien retourné la ressource à la bibliothèque.\n";
+    }
+}
+
+/* Utility method to find the size of the array to display */
 int Library::getDisplayedElementsSize() {
     return displayedResources.size();
 }
+
+
+
 

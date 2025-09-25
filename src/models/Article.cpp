@@ -29,6 +29,7 @@ void Article::compactedDisplay() const {
     Review::compactedDisplay();
     cout << " - Article Name: " << name << endl;
 }
+
 void Article::detailedDisplay() const {
     Review::detailedDisplay();
     cout << "Article Name: " << name << endl;
