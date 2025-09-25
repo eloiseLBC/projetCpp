@@ -17,6 +17,12 @@ Review::Review(const string& title, const string& author,
     this->numberArticles = numberArticles;
 }
 
+Review::Review(const string &id, const string &title, const string &author, bool borrowed, int publicationYear, int numberPages, const string &genre, const string &summary, const string &editor, int numberArticles)
+    : Book(id, title, author, borrowed, publicationYear, numberPages, genre, summary) {
+    this->editor = editor;
+    this->numberArticles = numberArticles;
+}
+
 // Getters
 string Review::getEditor() const {
     return this->editor;

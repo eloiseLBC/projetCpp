@@ -14,6 +14,12 @@ CD::CD(const string& title, const string& author,
     this->numberTracks = numberTracks;
 }
 
+CD::CD(const std::string &id, const std::string &title, const std::string &author, bool borrowed, int secondesDuration, int numberTracks, const std::string &productionCompany)
+    : VHS(id, title, author, borrowed, secondesDuration, productionCompany) {
+    this->numberTracks = numberTracks;
+}
+
+
 // Getters
 int CD::getNumberTracks() const {
     return this->numberTracks;

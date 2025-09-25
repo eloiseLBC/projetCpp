@@ -15,6 +15,7 @@ class Resource {
         // Constructors
         Resource(); // Default constructor
         Resource(const std::string& title, const std::string& author);
+        Resource(const std::string& id, const std::string& title, const std::string& author, bool borrowed);
 
         // Getters
         std::string getId();
@@ -30,7 +31,7 @@ class Resource {
         // Méthodes d'affichage
         void compactedDisplay() const;
         void detailedDisplay() const;
-        std::string toString() const;
+        virtual std::string toString() const;
 
         // Méthodes de recherche
         bool contains(std::string search);

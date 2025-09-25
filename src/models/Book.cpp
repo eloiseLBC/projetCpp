@@ -21,6 +21,14 @@ Book::Book(const string& title, const string& author,
     this->summary = summary;
 }
 
+Book::Book(const std::string &id, const std::string &title, const std::string &author, bool borrowed, int yearPublished, int numberPages, const std::string &collection, const std::string &summary)
+    : Resource(id, title, author, borrowed){
+    this->yearPublished = yearPublished;
+    this->numberPages = numberPages;
+    this->collection = collection;
+    this->summary = summary;
+}
+
 // Getters
 int Book::getYearPublished() const {
     return this->yearPublished;

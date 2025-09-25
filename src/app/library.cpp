@@ -39,7 +39,6 @@ void Library::addResource(string type) {
             string author;
             std::cout << "Entrez le nom de l'auteur: ";
             std::cin >> author;
-            std::cout << "\n";
             int yearPublished = utils::readInt("Entrez la date de publication: ");
             string collection;
             std::cout << "Entrez le nom de la collection: ";
@@ -211,7 +210,7 @@ void Library::saveToFile(const std::string& fileName) {
                   << e.what() << '\n';
         
     }
-    std::cout<< "Fichier sauvegardé";
+    std::cout<< "\nFichier sauvegardé\n";
 
 }
 
