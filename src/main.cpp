@@ -2,7 +2,7 @@
 #include <string>
 #include "app/utils.hpp"
 #include "./app/library.hpp"
-#include "models/Resource.hpp"
+#include "models/Resource.h"
 
 
 const std::string menu = 
@@ -17,8 +17,8 @@ const std::string menu =
 "- SEARCH chaîne : cherche la chaîne de caractères entrée dans les ressources de la bibliothèque\n"
 "- CLEAR : réinitialise la bibliothèque après une recherche\n"
 "- SHOW id : permet d'afficher les informations détaillées de la ressource sélectionnée\n"
-"- BORROW id : emprunte un livre (id)"
-"- RETURN id : retour d'un livre (id)"
+"- BORROW id : emprunte un livre (id)\n"
+"- RETURN id : retour d'un livre (id)\n"
 "- DELETE id : permet de supprimer une ressource selon son id\n"
 "- RESET : supprime toutes les ressources de la bibliothèque. La bibliothèque est vide. Il n'y a plus de ressources. Le vide de l'existence et le noir de la nuit.\n"
 "- BYE : Quitter l'application.\n"
@@ -46,7 +46,7 @@ int main() {
     Library library = Library();
 
     bool running = 1;
-    
+
     std::vector<std::string> userAnswerVector;
     Command command;
     string commandArg;
@@ -61,8 +61,9 @@ int main() {
             // Nothing in the input, continue
             continue;
         }
+
         command = toCommand(userAnswerVector[0]);
-        if(userAnswerVector.size()>2 ){
+        if(userAnswerVector.size() > 2 ){
             commandArg = utils::join(userAnswerVector, ' ', 1);
         } else if (userAnswerVector.size() == 2) {
             commandArg = userAnswerVector[1];
