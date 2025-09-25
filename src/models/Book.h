@@ -15,6 +15,8 @@ class Book : public Resource {
         Book(); // Default constructor
         Book(const std::string& title, const std::string& author,
              int yearPublished, int numberPages, const std::string& collection, const std::string& summary);
+        Book(const std::string& id, const std::string& title, const std::string& author, bool borrowed,
+            int yearPublished, int numberPages, const std::string& collection, const std::string& summary);
 
         // Getters
         int getYearPublished() const;

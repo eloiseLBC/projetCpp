@@ -14,6 +14,12 @@ class Article : public Review {
                 int publicationYear, int numberPages, const std::string& genre,
                 const std::string& summary, const std::string& editor, int numberArticles,
                 const std::string& name);
+        Article(const std::string& id, const std::string& title, const std::string& author, bool borrowed,
+                int publicationYear, int numberPages, const std::string& genre,
+                const std::string& summary, const std::string& editor, int numberArticles,
+                const std::string& name);
+
+
         // Getters
         std::string getName() const;
 

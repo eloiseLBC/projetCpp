@@ -35,6 +35,14 @@ Resource::Resource(const string& title, const string& author) {
     this->borrowed = 0;
 }
 
+Resource::Resource(const std::string &id, const std::string &title, const std::string &author, bool borrowed) {
+    this->id = id;
+    this->title = title;
+    this->author = author;
+    this->borrowed = borrowed;
+}
+
+
 // Getters
 string Resource::getId() {
     return this->id;

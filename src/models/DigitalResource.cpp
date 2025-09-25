@@ -17,6 +17,13 @@ DigitalResource::DigitalResource(const string& title, const string& author, cons
     this->path = path;
 }
 
+DigitalResource::DigitalResource(const string &id, const string &title, const string &author, bool borrowed, const string &type, int bytes, const string &path)
+    : Resource(id, title, author, borrowed) {
+    this->type = type;
+    this->bytes = bytes;
+    this->path = path;
+}
+
 // Getters
 string DigitalResource::getTypeDigitalResource() const {
     return this->type;

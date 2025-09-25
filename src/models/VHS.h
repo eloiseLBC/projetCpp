@@ -13,6 +13,8 @@ class VHS : public Resource{
         VHS(); // Default constructor
         VHS(const std::string& title, const std::string& author,
            int secondesDuration, const std::string& productionCompany);
+        VHS(const std::string& id, const std::string& title, const std::string& author, bool borrowed,
+           int secondesDuration, const std::string& productionCompany);
 
         // Getters
         int getSecondesDuration() const;
