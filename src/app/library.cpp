@@ -235,6 +235,7 @@ void Library::loadFromFile(const std::string& fileName) {
 
             // Convert line into resources
             std::vector<std::string> parametersOfResource = utils::split(line);
+            
             ResourcePtr res = utils::createResourceFromTokens(parametersOfResource);
             if (!res) {
                 // Si la fonction retourne nullptr plutôt qu’une exception,
