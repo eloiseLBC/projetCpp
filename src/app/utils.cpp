@@ -38,6 +38,22 @@ int utils::readInt(const string& query)
     }
 }
 
+std::vector<std::string> utils::parseArticles(const std::string& s) {
+    std::vector<std::string> result;
+    if (s.size() < 2 || s.front() != '[' || s.back() != ']')
+        throw std::runtime_error("Format d'articles invalide : " + s);
+
+    std::string inside = s.substr(1, s.size() - 2); // enlève les crochets
+    std::stringstream ss(inside);
+    std::string item;
+
+    while (std::getline(ss, item, ',')) {
+        if (!item.empty())
+            result.push_back(item);
+    }
+    return result;
+}
+
 /* params : entry string, delimiter ; 
 Splits the entry string on the delimiter character
 then returns the array of strings.
@@ -125,7 +141,7 @@ ResourcePtr utils::createResourceFromTokens(const std::vector<std::string>& toke
     } 
     else if (type == ResourceType::Review) {
         // check that we have the right number of tockens
-        if (tokens.size() != 11)   // type + 8 parameters
+        if (tokens.size() != 12)   // type + 8 parameters
             throw std::runtime_error("Mauvais nombre d’attributs pour Review");
         const std::string& id  = tokens[1];
         const std::string& title  = tokens[2];
@@ -137,8 +153,8 @@ ResourcePtr utils::createResourceFromTokens(const std::vector<std::string>& toke
         const std::string& summary = tokens[8];
         const std::string& editor = tokens[9];
         int                 nbArticles   = std::stoi(tokens[10]);   // conversion string → int
-        
-        return std::make_shared<Review>(id, title, author, borrowed, year, nbOfpages, collection, summary, editor, nbArticles);
+        std::vector<std::string> articles = parseArticles(tokens[11]);
+        return std::make_shared<Review>(id, title, author, borrowed, year, nbOfpages, collection, summary, editor, nbArticles, articles);
     } 
     else if (type == ResourceType::DigitalResource) {
         // check that we have the right number of tockens

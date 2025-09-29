@@ -1,6 +1,7 @@
 #include "Book.h"
 #include <iostream>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -60,7 +61,7 @@ void Book::setSummary(const string& summary) {
 // Méthodes d'affichage
 void Book::compactedDisplay() const {
     Resource::compactedDisplay();
-    cout << " - " << yearPublished << ", " << numberPages << " pages"
+    cout << " - " << to_string(yearPublished) << ", " << to_string(numberPages) << " pages"
          << ", Collection: " << collection << endl;
 }
 void Book::detailedDisplay() const {
@@ -72,7 +73,7 @@ void Book::detailedDisplay() const {
 }
 string Book::toString() const {
     ostringstream oss;
-    oss << Resource::toString() << ";" << yearPublished << ";" << numberPages
+    oss << Resource::toString() << ";" << to_string(yearPublished) << ";" << to_string(numberPages)
         << ";" << collection << ";" << summary;
     return oss.str();
 }

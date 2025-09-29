@@ -18,7 +18,7 @@ class Review : public Book {
                const std::string& summary, const std::string& editor, int numberArticles);
         Review(const std::string& id, const std::string& title, const std::string& author, bool borrowed,
                int publicationYear, int numberPages, const std::string& genre,
-               const std::string& summary, const std::string& editor, int numberArticles);
+               const std::string& summary, const std::string& editor, int numberArticles, std::vector<std::string> articlesName);
 
         // Getters
         std::string getEditor() const;

@@ -1,6 +1,7 @@
 #include "Review.h"
 #include <iostream>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -28,19 +29,10 @@ Review::Review(const string& title, const string& author,
 
 }
 
-Review::Review(const string &id, const string &title, const string &author, bool borrowed, int publicationYear, int numberPages, const string &genre, const string &summary, const string &editor, int numberArticles)
+Review::Review(const string &id, const string &title, const string &author, bool borrowed, int publicationYear, int numberPages, const string &genre, const string &summary, const string &editor, int numberArticles, std::vector<std::string> articlesName)
     : Book(id, title, author, borrowed, publicationYear, numberPages, genre, summary) {
     this->editor = editor;
     this->numberArticles = numberArticles;
-
-    for (int i = 0; i < numberArticles; i++) {
-        string articleName;
-        std::cout << "Entrez le nom de l'article n°" << i+1 << " : ";
-        std::cin.ignore(); // Pour ignorer le caractère de nouvelle ligne restant
-        std::getline(std::cin, articleName); // Pour lire le nom complet avec espaces
-        articlesName.push_back(articleName); // Ajoute l'article au vecteur
-    }
-
     this->articlesName = articlesName; // Sauvegarde le vecteur dans l'attribut de classe
 }
 
@@ -63,7 +55,7 @@ void Review::setNumberArticles(int numberArticles) {
 // Méthodes d'affichage
 void Review::compactedDisplay() const {
     Book::compactedDisplay();
-    cout << " - Editor: " << editor << ", Articles: " << numberArticles << endl;
+    cout << " - Editor: " << editor << ", Articles: " << to_string(numberArticles) << endl;
 }
 void Review::detailedDisplay() const {
     Book::detailedDisplay();
@@ -94,6 +86,5 @@ bool Review::contains(const std::string &search) {
            getCollection().find(search) != std::string::npos ||
            getSummary().find(search) !=  std::string::npos ;
 }
-
 
 

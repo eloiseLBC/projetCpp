@@ -49,7 +49,7 @@ void DigitalResource::setPath(const string& path) {
 // Méthodes d'affichage
 void DigitalResource::compactedDisplay() const {
     Resource::compactedDisplay();
-    cout << " - " << type << ", " << bytes << " bytes" << endl;
+    cout << " - " << type << ", " << to_string(bytes) << " bytes" << endl;
 }
 void DigitalResource::detailedDisplay() const {
     Resource::detailedDisplay();

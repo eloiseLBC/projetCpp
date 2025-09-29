@@ -21,5 +21,6 @@ public:
                             char delim,
                             std::size_t start = 0,
                             std::size_t end   = static_cast<std::size_t>(-1));
+    static std::vector<std::string> parseArticles(const std::string& s);
 };
 
