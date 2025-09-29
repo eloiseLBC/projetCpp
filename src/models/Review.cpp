@@ -47,7 +47,7 @@ void Review::compactedDisplay() const {
 void Review::detailedDisplay() const {
     Book::detailedDisplay();
     cout << "Editor: " << editor << endl;
-    cout << "Number of Articles: " << numberArticles << endl;
+    cout << "Number of Articles: " << to_string(numberArticles) << endl;
 }
 string Review::toString() const {
     return Book::toString() + ";" + editor + ";" + to_string(numberArticles);
