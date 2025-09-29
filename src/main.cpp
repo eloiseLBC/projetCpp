@@ -129,6 +129,7 @@ int main() {
             break;
         }
         userAnswer = "";
+        std::cout << menu;
     }
 
     std::cout << "Au revoir, à bientôt.\n";

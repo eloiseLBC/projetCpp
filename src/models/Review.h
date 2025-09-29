@@ -1,12 +1,14 @@
 #ifndef PROJETCPP_REVIEW_H
 #define PROJETCPP_REVIEW_H
 #include "Book.h"
+#include <vector>
 
 
 class Review : public Book {
     private:
         std::string editor;
         int numberArticles;
+        std::vector<std::string> articlesName;
     public:
         using Book::Book; // héritage de Book
         // Constructors
