@@ -2,7 +2,6 @@
 #include <string>
 #include "app/utils.hpp"
 #include "./app/library.hpp"
-#include "models/Resource.h"
 
 
 const std::string menu = 
@@ -52,17 +51,14 @@ int main() {
     Command command;
     string commandArg;
 
-    std::cout << menu;
-
     while (running) {
-
+        std::cout << menu;
         string userAnswer;
         std::getline(cin, userAnswer);
         userAnswerVector = utils::split(userAnswer, ' ');
         
         if (userAnswerVector.empty()) {
             // Nothing in the input, continue
-            std::cout << menu;
             continue;
         }
 

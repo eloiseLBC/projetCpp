@@ -81,7 +81,7 @@ ResourcePtr utils::createResourceFromTokens(const std::vector<std::string>& toke
         const std::string& collection = tokens[7];
         const std::string& summary = tokens[8];
 
-        return std::make_shared<Book>(title, author, year, nbOfpages, collection, summary);
+        return std::make_shared<Book>(id, title, author, borrowed, year, nbOfpages, collection, summary);
     } else if (type == ResourceType::CD) {
         // check that we have the right number of tockens
         if (tokens.size() != 8)   // type + 8 parameters
@@ -95,7 +95,7 @@ ResourcePtr utils::createResourceFromTokens(const std::vector<std::string>& toke
         int              numberTracks  = std::stoi(tokens[7]);   // conversion string → double
         
 
-        return std::make_shared<CD>(title, author, secondesDuration, numberTracks, productionCompany);
+        return std::make_shared<CD>(id, title, author, borrowed, secondesDuration, numberTracks, productionCompany);
     } else if (type == ResourceType::VHS) {
         // check that we have the right number of tockens
         if (tokens.size() != 7)   // type + 6 parameters
@@ -104,10 +104,11 @@ ResourcePtr utils::createResourceFromTokens(const std::vector<std::string>& toke
         const std::string& title  = tokens[2];
         const std::string& author = tokens[3];
         const bool borrowed = std::stoi(tokens[4]);
-        int                 secondesDuration   = std::stoi(tokens[5]);   // conversion string → int
+        
+        int secondesDuration   = std::stoi(tokens[5]);   // conversion string → int
         const std::string& productionCompany = tokens[6];
 
-        return std::make_shared<VHS>(title, author, secondesDuration, productionCompany);
+        return std::make_shared<VHS>(id, title, author, borrowed, secondesDuration, productionCompany);
     }
     else if (type == ResourceType::DVD) {
         // check that we have the right number of tockens
@@ -121,7 +122,7 @@ ResourcePtr utils::createResourceFromTokens(const std::vector<std::string>& toke
         const std::string& productionCompany = tokens[6];
         int              numberTracks  = std::stoi(tokens[7]);   // conversion string → double
         
-        return std::make_shared<DVD>(title, author, secondesDuration, productionCompany);
+        return std::make_shared<DVD>(id, title, author, borrowed, secondesDuration, numberTracks, productionCompany);
     } 
     else if (type == ResourceType::Review) {
         // check that we have the right number of tockens
@@ -137,7 +138,8 @@ ResourcePtr utils::createResourceFromTokens(const std::vector<std::string>& toke
         const std::string& summary = tokens[8];
         const std::string& editor = tokens[8];
         int                 nbArticles   = std::stoi(tokens[5]);   // conversion string → int
-        return std::make_shared<Review>(title, author, year, nbOfpages, collection, summary);
+        
+        return std::make_shared<Review>(id, title, author, borrowed, year, nbOfpages, collection, summary, editor, nbArticles);
     } 
     else if (type == ResourceType::DigitalResource) {
         // check that we have the right number of tockens
@@ -151,23 +153,7 @@ ResourcePtr utils::createResourceFromTokens(const std::vector<std::string>& toke
         int                bytes   = std::stoi(tokens[5]);   // conversion string → int
         const std::string& path = tokens[8];
         
-        return std::make_shared<DigitalResource>(title, author, type, bytes, path);
-    } 
-    else if (type == ResourceType::Article) {
-        // check that we have the right number of tockens
-        if (tokens.size() != 11)   // type + 10 parameters
-            throw std::runtime_error("Mauvais nombre d’attributs pour Article");
-        const std::string& id  = tokens[1];
-        const std::string& title  = tokens[2];
-        const std::string& author = tokens[3];
-        const bool borrowed = std::stoi(tokens[4]);
-        int                 year   = std::stoi(tokens[5]);   // conversion string → int
-        int              nbOfpages  = std::stoi(tokens[6]);   // conversion string → double
-        const std::string& collection = tokens[7];
-        const std::string& summary = tokens[8];
-        const std::string& editor = tokens[8];
-        int                 nbArticles   = std::stoi(tokens[5]);   // conversion string → int
-        return std::make_shared<Article>(title, author, year, nbOfpages, collection, summary);
+        return std::make_shared<DigitalResource>(id, title, author, borrowed, type, bytes, path);
     } 
 
     
