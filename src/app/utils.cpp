@@ -112,7 +112,7 @@ ResourcePtr utils::createResourceFromTokens(const std::vector<std::string>& toke
 
         return std::make_shared<CD>(id, title, author, borrowed, secondesDuration, numberTracks, productionCompany);
     } else if (type == ResourceType::VHS) {
-        // check that we have the right number of tockens
+        // check that we have the right number of tokens
         if (tokens.size() != 7)   // type + 6 parameters
             throw std::runtime_error("Mauvais nombre d’attributs pour VHS");
         const std::string& id  = tokens[1];

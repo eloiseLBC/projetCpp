@@ -69,7 +69,6 @@ void Library::addResource(string type) {
             int numberTracks = utils::readInt("Entrez le nombre de pistes du DVD: ");
             auto res = std::make_shared<DVD>(name, author, secondesDuration, numberTracks, productionCompany);
             allResources.push_back(std::move(res));
-            displayedResources.push_back(std::move(res));
             break;
         }
         case ResourceType::Review:{
@@ -93,7 +92,6 @@ void Library::addResource(string type) {
             int numberArticles = utils::readInt("Entrez le nombre d'articles : ");
             auto res = std::make_shared<Review>(name, author, yearPublished, nbOfpages, collection, summary, editor, numberArticles);
             allResources.push_back(std::move(res));
-            displayedResources.push_back(std::move(res));
             break;
         }
         case ResourceType::DigitalResource: {
@@ -112,7 +110,6 @@ void Library::addResource(string type) {
             std::getline(cin, path);
             auto res = std::make_shared<DigitalResource>(name, author, typeOfDigitalResource, bytes, path);
             allResources.push_back(std::move(res));
-            displayedResources.push_back(std::move(res));
             break;
         }
         case ResourceType::VHS: {
@@ -128,7 +125,6 @@ void Library::addResource(string type) {
             std::getline(cin, productionCompany);
             auto res = std::make_shared<VHS>(name, author, secondesDuration, productionCompany);
             allResources.push_back(std::move(res));
-            displayedResources.push_back(std::move(res));
             break;
         }
         case ResourceType::Unknown:
@@ -136,6 +132,7 @@ void Library::addResource(string type) {
         std::cout << "Type non reconnu.\n";
         break;
     }
+    clearSearch();
 
 }
 
