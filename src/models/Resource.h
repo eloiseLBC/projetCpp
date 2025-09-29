@@ -29,8 +29,8 @@ class Resource {
         void setBorrowed(const bool borrowed);
 
         // Méthodes d'affichage
-        void compactedDisplay() const;
-        void detailedDisplay() const;
+        virtual void compactedDisplay() const;
+        virtual void detailedDisplay() const;
         virtual std::string toString() const;
 
         // Méthodes de recherche

@@ -65,8 +65,8 @@ void Book::compactedDisplay() const {
 }
 void Book::detailedDisplay() const {
     Resource::detailedDisplay();
-    cout << "Year Published: " << yearPublished << endl;
-    cout << "Number of Pages: " << numberPages << endl;
+    cout << "Year Published: " << to_string(yearPublished) << endl;
+    cout << "Number of Pages: " << to_string(numberPages) << endl;
     cout << "Collection: " << collection << endl;
     cout << "Summary: " << summary << endl;
 }
