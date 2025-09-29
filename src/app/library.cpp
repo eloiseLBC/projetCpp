@@ -110,8 +110,11 @@ void Library::addResource(string type) {
             std::cin >> editor;
             int numberArticles = utils::readInt("Entrez le nombre d'articles : ");
             auto res = std::make_shared<Review>(name, author, yearPublished, nbOfpages, collection, summary, editor, numberArticles);
+            std::cout << "Ressource ajoutée avec succès 1.\n";
             allResources.push_back(std::move(res));
+            std::cout << "Ressource ajoutée avec succès 2.\n";
             displayedResources.push_back(std::move(res));
+            std::cout << "Ressource ajoutée avec succès 3.\n";
             break;
         }
         case ResourceType::DigitalResource: {
@@ -129,33 +132,6 @@ void Library::addResource(string type) {
             std::cout << "Entrez le chemin d'accès: ";
             std::cin >> path;
             auto res = std::make_shared<DigitalResource>(name, author, typeOfDigitalResource, bytes, path);
-            allResources.push_back(std::move(res));
-            displayedResources.push_back(std::move(res));
-            break;
-        }
-        case ResourceType::Article: {
-            string name;
-            std::cout << "Entrez le nom de la resource: ";
-            std::cin >> name;
-            string author;
-            std::cout << "Entrez le nom de l'auteur: ";
-            std::cin >> author;
-            int yearPublished = utils::readInt("Entrez la date de publication: ");
-            string collection;
-            std::cout << "Entrez le nom de la collection: ";
-            std::cin >> collection;
-            int nbOfpages = utils::readInt("Entrez le nombre de pages : ");
-            string summary;
-            std::cout << "Entrez le résumé : ";
-            std::cin >> summary;
-            string editor;
-            std::cout << "Entrez l'éditeur : ";
-            std::cin >> editor;
-            int numberArticles = utils::readInt("Entrez le nombre d'articles : ");
-            string journalName;
-            std::cout << "Entrez le nom du journal : ";
-            std::cin >> journalName;
-            auto res = std::make_shared<Article>(name, author, yearPublished, nbOfpages, collection, summary, editor, numberArticles, journalName);
             allResources.push_back(std::move(res));
             displayedResources.push_back(std::move(res));
             break;

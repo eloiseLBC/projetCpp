@@ -4,7 +4,6 @@
 #include "../models/Book.h"
 #include "../models/CD.h"
 #include "../models/DVD.h"
-#include "../models/Article.h"
 #include "../models/Review.h"
 #include "../models/VHS.h"
 #include "../models/DigitalResource.h"

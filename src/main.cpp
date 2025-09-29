@@ -60,11 +60,11 @@ int main() {
         std::getline(cin, userAnswer);
         userAnswerVector = utils::split(userAnswer, ' ');
         
-        if (userAnswerVector.empty()) {
-            // Nothing in the input, continue
-            std::cout << menu;
-            continue;
-        }
+        // if (userAnswerVector.empty()) {
+        //     // Nothing in the input, continue
+        //     std::cout << menu;
+        //     continue;
+        // }
 
         command = toCommand(userAnswerVector[0]);
         if(userAnswerVector.size() > 2 ){
@@ -126,6 +126,7 @@ int main() {
             break;
         }
         userAnswer = "";
+        std::cout << menu;
     }
 
     std::cout << "Au revoir, à bientôt.\n";
