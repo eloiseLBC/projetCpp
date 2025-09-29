@@ -9,7 +9,6 @@ ResourceType toResourceType(const std::string& s) {
     if (lower == "cd") return ResourceType::CD;
     if (lower == "dvd") return ResourceType::DVD;
     if (lower == "review") return ResourceType::Review;
-    if (lower == "article") return ResourceType::Article;
     if (lower == "vhs") return ResourceType::VHS;
     if (lower == "digitalresource" || lower == "digital resource") return ResourceType::DigitalResource;
 

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "app/utils.hpp"
-#include "./app/library.hpp"
+#include "app/utils.h"
+#include "./app/library.h"
 
 
 const std::string menu = 
@@ -53,8 +53,10 @@ int main() {
     Command command;
     string commandArg;
 
+    std::cout << menu;
+
     while (running) {
-        std::cout << menu;
+
         string userAnswer;
         std::getline(cin, userAnswer);
         userAnswerVector = utils::split(userAnswer, ' ');
