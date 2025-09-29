@@ -1,6 +1,5 @@
 #include "Review.h"
 #include <iostream>
-#include <sstream>
 #include <string>
 
 using namespace std;
@@ -58,9 +57,25 @@ void Review::compactedDisplay() const {
     cout << " - Editor: " << editor << ", Articles: " << to_string(numberArticles) << endl;
 }
 void Review::detailedDisplay() const {
+    int i = 0;
+    for (i; i < numberArticles; i++) {
+        // Get the article name
+        string name = articlesName[i];
+    }
+    string articlesConcatenated = "[";
+    for (i = 0; i < numberArticles; i++) {
+        articlesConcatenated += articlesName[i];
+        if (i < numberArticles - 1) {
+            articlesConcatenated += ",";
+        }
+    }
+    articlesConcatenated += "]";
+
     Book::detailedDisplay();
     cout << "Editor: " << editor << endl;
     cout << "Number of Articles: " << to_string(numberArticles) << endl;
+    cout << articlesConcatenated << endl;
+
 }
 string Review::toString() const {
     int i = 0;
