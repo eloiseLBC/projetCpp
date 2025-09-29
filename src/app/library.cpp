@@ -257,31 +257,38 @@ void Library::showDetailedDisplay(string id) {
 
 void Library::deleteId(string id) {
     bool wasDeleted = false;
-    allResources.erase(std::remove_if(displayedResources.begin(), displayedResources.end(), [&](const ResourcePtr& r)
-    {
-        // If id is found, we show that we are deleting it and show what we are deleting
-        if(r->getId() == id) {
-            cout << "Ressource supprimée :\n";
-            r->compactedDisplay();
-            wasDeleted = true;
-        }
-        // Then we 
-        return r->getId() == id;
-    }));
 
-    // Displayed resources can't contain the resources if allResources didn't contain it
-    // So we only perform deletion on displayedResources if we deleted from allResources
+    // Supprimer de allResources avec les bons itérateurs
+    allResources.erase(
+        std::remove_if(allResources.begin(), allResources.end(),
+            [&](const ResourcePtr& r) {
+                if(r->getId() == id) {
+                    cout << "Ressource supprimée :\n";
+                    r->compactedDisplay();
+                    wasDeleted = true;
+                    return true;  // Marquer pour suppression
+                }
+                return false;
+            }
+        ),
+        allResources.end()  // ⚠️ IMPORTANT : ne pas oublier ce second paramètre !
+    );
+
+    // Si supprimé de allResources, supprimer aussi de displayedResources
     if (wasDeleted) {
-        displayedResources.erase(std::remove_if(displayedResources.begin(), displayedResources.end(), [&](const ResourcePtr& r)
-        {
-            // Remove if the id is the same. (We do not clear the search that way)
-            return r->getId() == id;
-        }));
+        displayedResources.erase(
+            std::remove_if(displayedResources.begin(), displayedResources.end(),
+                [&](const ResourcePtr& r) {
+                    return r->getId() == id;
+                }
+            ),
+            displayedResources.end()  // ⚠️ IMPORTANT : ne pas oublier ce second paramètre !
+        );
     }
 
-    // Inform user if we didn't find anything
+    // Informer l'utilisateur si rien n'a été trouvé
     if (!wasDeleted) {
-        cout << "La ressource avec l'identifiant " << id << " n'a pas été trouvée. Aucune action effectuée.";
+        cout << "La ressource avec l'identifiant " << id << " n'a pas été trouvée. Aucune action effectuée.\n";
     }
 }
 
@@ -315,7 +322,7 @@ void Library::returnResource(string id) {
     } else if (!toReturn->getBorrowed()) {
         cout << "Cette ressource n'a pas été empruntée. Aucune action effectuée\n";
     } else {
-        toReturn->setBorrowed(true);
+        toReturn->setBorrowed(false);
         toReturn->compactedDisplay();
         cout << "Vous avez bien retourné la ressource à la bibliothèque.\n";
     }

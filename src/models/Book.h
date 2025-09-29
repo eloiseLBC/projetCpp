@@ -31,7 +31,7 @@ class Book : public Resource {
         void setSummary(const std::string& summary);
 
         // Méthodes d'affichage
-        void compactedDisplay() const;
+        void compactedDisplay() const override;
         void detailedDisplay() const;
         std::string toString() const;
 

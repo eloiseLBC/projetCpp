@@ -87,7 +87,7 @@ string Review::toString() const {
     for (i = 0; i < numberArticles; i++) {
         articlesConcatenated += articlesName[i];
         if (i < numberArticles - 1) {
-            articlesConcatenated += ",";
+            articlesConcatenated += ", ";
         }
     }
     articlesConcatenated += "]";
