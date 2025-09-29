@@ -24,7 +24,7 @@ int utils::readInt(const string& query)
     std::string input;
     while (true) {
         std::cout << query;
-        std::cin >> input;           
+        std::getline(cin, input);      
 
         try {
             int year = std::stoi(input);   // can throw invalid_argument / out_of_range
@@ -136,8 +136,8 @@ ResourcePtr utils::createResourceFromTokens(const std::vector<std::string>& toke
         int              nbOfpages  = std::stoi(tokens[6]);   // conversion string → double
         const std::string& collection = tokens[7];
         const std::string& summary = tokens[8];
-        const std::string& editor = tokens[8];
-        int                 nbArticles   = std::stoi(tokens[5]);   // conversion string → int
+        const std::string& editor = tokens[9];
+        int                 nbArticles   = std::stoi(tokens[10]);   // conversion string → int
         
         return std::make_shared<Review>(id, title, author, borrowed, year, nbOfpages, collection, summary, editor, nbArticles);
     } 
@@ -149,9 +149,9 @@ ResourcePtr utils::createResourceFromTokens(const std::vector<std::string>& toke
         const std::string& title  = tokens[2];
         const std::string& author = tokens[3];
         const bool borrowed = std::stoi(tokens[4]);
-        const std::string& type = tokens[7];
-        int                bytes   = std::stoi(tokens[5]);   // conversion string → int
-        const std::string& path = tokens[8];
+        const std::string& type = tokens[5];
+        int                bytes   = std::stoi(tokens[6]);   // conversion string → int
+        const std::string& path = tokens[7];
         
         return std::make_shared<DigitalResource>(id, title, author, borrowed, type, bytes, path);
     } 

@@ -36,7 +36,7 @@ void CD::compactedDisplay() const {
 }
 void CD::detailedDisplay() const {
     VHS::detailedDisplay();
-    cout << "Number of Tracks: " << numberTracks << endl;
+    cout << "Nombre de pistes: " << to_string(numberTracks) << endl;
 }
 string CD::toString() const {
     return VHS::toString() + ";" + to_string(numberTracks);

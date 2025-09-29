@@ -37,6 +37,8 @@ Command toCommand(const string& s) {
     if (s == "SHOW") return Command::SHOW; 
     if (s == "DELETE") return Command::DELETE; 
     if (s == "RESET") return Command::RESET; 
+    if (s == "BORROW") return Command::BORROW; 
+    if (s == "RETURN") return Command::RETURN; 
     if (s == "BYE") return Command::BYE; 
     return Command::Unknown;
 }
@@ -107,15 +109,20 @@ int main() {
                 break;
             case Command::SHOW:
                 library.showDetailedDisplay(commandArg);
+                break;
             case Command::DELETE:
                 library.deleteId(commandArg);
+                break;
             case Command::RESET:
                 library.clearSearch();
                 std::cout << "La recherche a été réinitialisée.\n";
+                break;
             case Command::BORROW:
                 library.borrow(commandArg);
+                break;
             case Command::RETURN:   
                 library.returnResource(commandArg);
+                break;
             case Command::Unknown:
             default:
             std::cout << "Commande non reconnue. Merci d'entrer une commande valide\n";

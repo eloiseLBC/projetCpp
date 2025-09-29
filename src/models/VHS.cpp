@@ -1,6 +1,7 @@
 #include "VHS.h"
 #include <iostream>
 #include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -41,11 +42,11 @@ void VHS::setProductionCompany(const string& company) {
 // Méthodes d'affichage
 void VHS::compactedDisplay() const {
     Resource::compactedDisplay();
-    cout << " - " << secondesDuration << " sec" << endl;
+    cout << " - " << to_string(secondesDuration) << " sec" << endl;
 }
 void VHS::detailedDisplay() const {
     Resource::detailedDisplay();
-    cout << "Duration (sec): " << secondesDuration << endl;
+    cout << "Duration (sec): " << to_string(secondesDuration) << endl;
     cout << "Production Company: " << productionCompany << endl;
 }
 string VHS::toString() const {

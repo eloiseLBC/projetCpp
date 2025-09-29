@@ -54,8 +54,8 @@ void DigitalResource::compactedDisplay() const {
 void DigitalResource::detailedDisplay() const {
     Resource::detailedDisplay();
     cout << "Type: " << type << endl;
-    cout << "Size (bytes): " << bytes << endl;
-    cout << "Path: " << path << endl;
+    cout << "Taille (bytes): " << to_string(bytes) << endl;
+    cout << "Chemin: " << path << endl;
 }
 string DigitalResource::toString() const {
     return Resource::toString() + ";" + type + ";" + to_string(bytes) + ";" + path;
