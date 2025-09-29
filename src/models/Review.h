@@ -14,6 +14,10 @@ class Review : public Book {
         Review(const std::string& title, const std::string& author,
                int publicationYear, int numberPages, const std::string& genre,
                const std::string& summary, const std::string& editor, int numberArticles);
+        Review(const std::string& id, const std::string& title, const std::string& author, bool borrowed,
+               int publicationYear, int numberPages, const std::string& genre,
+               const std::string& summary, const std::string& editor, int numberArticles);
+
         // Getters
         std::string getEditor() const;
         int getNumberArticles() const;

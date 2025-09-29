@@ -12,6 +12,8 @@ class CD : public VHS {
         CD(); // Default constructor
         CD(const std::string& title, const std::string& author,
            int secondesDuration, int numberTracks, const std::string& productionCompany);
+        CD(const std::string& id, const std::string& title, const std::string& author, bool borrowed,
+           int secondesDuration, int numberTracks, const std::string& productionCompany);
 
         // Getters
         int getNumberTracks() const;

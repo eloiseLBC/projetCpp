@@ -16,6 +16,12 @@ Article::Article(const string& title, const string& author,
     this->name = name;
 }
 
+Article::Article(const std::string &id, const std::string &title, const std::string &author, bool borrowed, int publicationYear, int numberPages, const std::string &genre, const std::string &summary, const std::string &editor, int numberArticles, const std::string &name)
+    : Review(id, title, author, borrowed, publicationYear, numberPages, genre, summary, editor, numberArticles) {
+    this->name = name;
+}
+
+
 // Getters
 string Article::getName() const {
     return this->name;
@@ -29,6 +35,7 @@ void Article::compactedDisplay() const {
     Review::compactedDisplay();
     cout << " - Article Name: " << name << endl;
 }
+
 void Article::detailedDisplay() const {
     Review::detailedDisplay();
     cout << "Article Name: " << name << endl;

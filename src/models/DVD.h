@@ -10,6 +10,7 @@ class DVD : public CD{
         DVD(); // Default constructor
         DVD(const std::string& title, const std::string& author,
            int secondesDuration, int numberTracks, const std::string& productionCompany);
+        DVD(const std::string& id, const std::string& title, const std::string& author, bool borrowed,           int secondesDuration, int numberTracks, const std::string& productionCompany);
         // Méthodes de recherche
         std::string getType() const override {
             return "DVD";

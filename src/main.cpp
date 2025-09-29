@@ -2,7 +2,6 @@
 #include <string>
 #include "app/utils.hpp"
 #include "./app/library.hpp"
-#include "models/Resource.h"
 
 
 const std::string menu = 
@@ -26,7 +25,8 @@ const std::string menu =
 "Entrez votre requête :\n"
 ;
 
-enum class Command { ADD, LOAD, SAVE, LIST, SEARCH, CLEAR, SHOW, DELETE, RESET, BYE, Unknown };
+/* All the command possible are there*/
+enum class Command { ADD, LOAD, SAVE, LIST, SEARCH, CLEAR, SHOW, DELETE, RESET, BYE, BORROW, RETURN, Unknown };
 Command toCommand(const string& s) {
     if (s == "ADD") return Command::ADD; 
     if (s == "LOAD") return Command::LOAD; 
@@ -78,7 +78,7 @@ int main() {
                 running = 0;
                 break;
             case Command::ADD:
-                // commandArg will be a type
+                // here commandArg should be a type
                 library.addResource(commandArg);
                 break;
             case Command::LOAD:
@@ -103,12 +103,19 @@ int main() {
                 break;
             case Command::SEARCH:
                 library.search(commandArg);
-
                 std::cout << "Recherche effectuée."<< to_string(library.getDisplayedElementsSize()) <<" éléments trouvés. Tapez LIST pour voir les résultats de la recherche\n";
                 break;
             case Command::SHOW:
+                library.showDetailedDisplay(commandArg);
             case Command::DELETE:
+                library.deleteId(commandArg);
             case Command::RESET:
+                library.clearSearch();
+                std::cout << "La recherche a été réinitialisée.\n";
+            case Command::BORROW:
+                library.borrow(commandArg);
+            case Command::RETURN:   
+                library.returnResource(commandArg);
             case Command::Unknown:
             default:
             std::cout << "Commande non reconnue. Merci d'entrer une commande valide\n";

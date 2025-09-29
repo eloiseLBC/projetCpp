@@ -16,6 +16,12 @@ VHS::VHS(const string& title, const string& author,
     this->productionCompany = productionCompany;
 }
 
+VHS::VHS(const string &id, const string &title, const string &author, bool borrowed, int secondesDuration, const string &productionCompany)
+    : Resource(id, title, author, borrowed) {
+    this->secondesDuration = secondesDuration;
+    this->productionCompany = productionCompany;
+}
+
 // Getters
 int VHS::getSecondesDuration() const {
     return this->secondesDuration;
