@@ -1,5 +1,5 @@
-#ifndef PROJETCPP_LIBRARY_HPP
-#define PROJETCPP_LIBRARY_HPP
+#ifndef PROJETCPP_LIBRARY_H
+#define PROJETCPP_LIBRARY_H
 #include "../models/Resource.h"
 #include "../models/Book.h"
 #include "../models/CD.h"
@@ -13,7 +13,7 @@
 #include <string>
 #include <memory>
 #include <fstream>
-#include "utils.hpp"
+#include "utils.h"
 using namespace std ;
 
 class Library{

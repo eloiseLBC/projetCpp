@@ -10,7 +10,6 @@ enum class ResourceType {
     CD,
     DVD,
     Review,
-    Article,
     VHS,
     DigitalResource
 };

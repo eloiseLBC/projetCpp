@@ -1,5 +1,5 @@
-#include "library.hpp"
-#include "utils.hpp"
+#include "library.h"
+#include "utils.h"
 #include <iostream>
 #include <string>
 #include <memory>
@@ -92,11 +92,8 @@ void Library::addResource(string type) {
             std::getline(cin, editor);
             int numberArticles = utils::readInt("Entrez le nombre d'articles : ");
             auto res = std::make_shared<Review>(name, author, yearPublished, nbOfpages, collection, summary, editor, numberArticles);
-            std::cout << "Ressource ajoutée avec succès 1.\n";
             allResources.push_back(std::move(res));
-            std::cout << "Ressource ajoutée avec succès 2.\n";
             displayedResources.push_back(std::move(res));
-            std::cout << "Ressource ajoutée avec succès 3.\n";
             break;
         }
         case ResourceType::DigitalResource: {
@@ -136,7 +133,7 @@ void Library::addResource(string type) {
         }
         case ResourceType::Unknown:
         default:
-        std::cout << "Type non reconnu.";
+        std::cout << "Type non reconnu.\n";
         break;
     }
 
