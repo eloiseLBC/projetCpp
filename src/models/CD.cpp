@@ -32,7 +32,7 @@ void CD::setNumberTracks(int tracks) {
 // Méthodes d'affichage
 void CD::compactedDisplay() const {
     VHS::compactedDisplay();
-    cout << " - " << numberTracks << " tracks" << endl;
+    cout << " - " << to_string(numberTracks) << " tracks" << endl;
 }
 void CD::detailedDisplay() const {
     VHS::detailedDisplay();
