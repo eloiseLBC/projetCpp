@@ -75,7 +75,6 @@ void Resource::setBorrowed(const bool borrowed) {
 
 // Méthodes d'affichage
 void Resource::compactedDisplay() const {
-    cout << "Affichage des ressources :" << endl;
     cout << "[" << id << "] " << title << " by " << author
          << (borrowed ? " (Borrowed)" : " (Available)") << endl;
 }
