@@ -242,6 +242,13 @@ void Library::clearSearch() {
     displayedResources = allResources;
 }
 
+void Library::reset() {
+    allResources = {};
+    displayedResources = {};
+    std::cout << "La bibliothèque a été réinitialisée. Il n'y a plus de ressources.\n";
+}
+
+
 void Library::showDisplayedResources() {
     std::cout << "***** Liste des ressources *****\n";
     
