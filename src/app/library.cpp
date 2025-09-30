@@ -31,11 +31,11 @@ void Library::addResource(string type) {
             std::cout << "Entrez le résumé du livre: ";
             std::getline(cin, summary);
 
-            /* Smart pointer rather than new to automatically handle memory and not have memory leaks somewhere  -- https://en.cppreference.com/w/cpp/memory/shared_ptr/make_shared
-            Using auto in order for the code to be cleaner -- https://www.w3schools.com/cpp/cpp_auto.asp */
+
             auto res = std::make_shared<Book>(name, author, yearPublished, nbOfpages, collection, summary);
-            allResources.push_back(std::move(res));
-            displayedResources.push_back(std::move(res));
+            // allResources.push_back(std::move(res));
+            // displayedResources.push_back(std::move(res));
+            allResources.push_back(res);
             break;
         }
         case ResourceType::CD: {
@@ -51,8 +51,9 @@ void Library::addResource(string type) {
             std::getline(cin, productionCompany);
             int numberTracks = utils::readInt("Entrez le nombre de pistes du CD: ");
             auto res = std::make_shared<CD>(name, author, secondesDuration, numberTracks, productionCompany);
-            allResources.push_back(std::move(res));
-            displayedResources.push_back(std::move(res));
+            // allResources.push_back(std::move(res));
+            // displayedResources.push_back(std::move(res));
+            allResources.push_back(res);
             break;
         }
         case ResourceType::DVD: {
@@ -68,7 +69,8 @@ void Library::addResource(string type) {
             std::getline(cin, productionCompany);
             int numberTracks = utils::readInt("Entrez le nombre de pistes du DVD: ");
             auto res = std::make_shared<DVD>(name, author, secondesDuration, numberTracks, productionCompany);
-            allResources.push_back(std::move(res));
+            // allResources.push_back(std::move(res));
+            allResources.push_back(res);
             break;
         }
         case ResourceType::Review:{
@@ -91,7 +93,8 @@ void Library::addResource(string type) {
             std::getline(cin, editor);
             int numberArticles = utils::readInt("Entrez le nombre d'articles : ");
             auto res = std::make_shared<Review>(name, author, yearPublished, nbOfpages, collection, summary, editor, numberArticles);
-            allResources.push_back(std::move(res));
+            // allResources.push_back(std::move(res));
+            allResources.push_back(res);
             break;
         }
         case ResourceType::DigitalResource: {
@@ -109,7 +112,8 @@ void Library::addResource(string type) {
             std::cout << "Entrez le chemin d'accès: ";
             std::getline(cin, path);
             auto res = std::make_shared<DigitalResource>(name, author, typeOfDigitalResource, bytes, path);
-            allResources.push_back(std::move(res));
+            // allResources.push_back(std::move(res));
+            allResources.push_back(res);
             break;
         }
         case ResourceType::VHS: {
@@ -124,7 +128,8 @@ void Library::addResource(string type) {
             std::cout << "Entrez la companie de production: ";
             std::getline(cin, productionCompany);
             auto res = std::make_shared<VHS>(name, author, secondesDuration, productionCompany);
-            allResources.push_back(std::move(res));
+            // allResources.push_back(std::move(res));
+            allResources.push_back(res);
             break;
         }
         case ResourceType::Unknown:
@@ -224,24 +229,41 @@ void Library::loadFromFile(const std::string& fileName) {
 }
 
 void Library::search(string searchString) {
-    displayedResources.erase(std::remove_if(displayedResources.begin(), displayedResources.end(), [&](const ResourcePtr& r)
-                                  {
-                                      // Remove if doesn't contain the searchstring.
-                                      return !r->contains(searchString);
-                                  }));
+    std::vector<ResourcePtr> results;
+    for (const auto& r : displayedResources) {
+        if (r && r->contains(searchString)) {
+            results.push_back(r);
+        }
+    }
+    displayedResources = results;
 }
 
 void Library::clearSearch() {
     displayedResources = allResources;
 }
 
+void Library::reset() {
+    allResources = {};
+    displayedResources = {};
+    std::cout << "La bibliothèque a été réinitialisée. Il n'y a plus de ressources.\n";
+}
+
+
 void Library::showDisplayedResources() {
     std::cout << "***** Liste des ressources *****\n";
     
-    for(ResourcePtr r : displayedResources) {
-       r->compactedDisplay();
+    if (displayedResources.empty()) {
+        std::cout << "Aucune ressource à afficher.\n";
+        return;
     }
 
+    for(const auto& r : displayedResources) {
+        if (r) {  // Vérifier que le pointeur n'est pas null
+            r->compactedDisplay();
+        } else {
+            std::cout << "Erreur : pointeur null détecté\n";
+        }
+    }
 }
 
 void Library::showDetailedDisplay(string id) {

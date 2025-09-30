@@ -16,15 +16,15 @@ Review::Review(const string& title, const string& author,
     this->editor = editor;
     this->numberArticles = numberArticles;
 
+
     for (int i = 0; i < numberArticles; i++) {
         string articleName;
-        std::cout << "Entrez le nom de l'article n°" << i+1 << " : ";
-        std::cin.ignore(); // Pour ignorer le caractère de nouvelle ligne restant
-        std::getline(std::cin, articleName); // Pour lire le nom complet avec espaces
-        articlesName.push_back(articleName); // Ajoute l'article au vecteur
+        std::cout << "Entrez le nom de l'article n°" << (i+1) << " : ";
+        std::getline(std::cin, articleName);
+        articlesName.push_back(articleName);
     }
 
-    this->articlesName = articlesName; // Sauvegarde le vecteur dans l'attribut de classe
+    this->articlesName = articlesName;
 
 }
 
@@ -57,26 +57,16 @@ void Review::compactedDisplay() const {
     cout << " - Editor: " << editor << ", Articles: " << to_string(numberArticles) << endl;
 }
 void Review::detailedDisplay() const {
-    int i = 0;
-    for (i; i < numberArticles; i++) {
-        // Get the article name
-        string name = articlesName[i];
-    }
-    string articlesConcatenated = "[";
-    for (i = 0; i < numberArticles; i++) {
-        articlesConcatenated += articlesName[i];
-        if (i < numberArticles - 1) {
-            articlesConcatenated += ",";
-        }
-    }
-    articlesConcatenated += "]";
-
     Book::detailedDisplay();
     cout << "Editor: " << editor << endl;
     cout << "Number of Articles: " << to_string(numberArticles) << endl;
-    cout << articlesConcatenated << endl;
 
+    // Afficher chaque article sur sa propre ligne
+    for (int i = 0; i < numberArticles; i++) {
+        cout << "Article " << (i + 1) << " : " << articlesName[i] << endl;
+    }
 }
+
 string Review::toString() const {
     int i = 0;
     for (i; i < numberArticles; i++) {

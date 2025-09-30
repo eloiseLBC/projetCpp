@@ -116,7 +116,7 @@ int main() {
                 library.deleteId(commandArg);
                 break;
             case Command::RESET:
-                library.clearSearch();
+                library.reset();
                 std::cout << "La recherche a été réinitialisée.\n";
                 break;
             case Command::BORROW:
