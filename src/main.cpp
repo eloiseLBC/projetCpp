@@ -123,119 +123,134 @@ int main() {
     User* currentUser = nullptr;
 
     while (running) {
-        // Authentification si pas connecté
-        if (currentUser == nullptr) {
+        // Menu initial : choix entre connexion ou quitter
+        std::cout << "***********************************************\n"
+                  << "1. Se connecter\n"
+                  << "2. Quitter\n"
+                  << "Veuillez entrer votre choix (1 ou 2) : ";
+        std::string choice;
+        std::getline(cin, choice);
+
+        if (choice == "1") {
+            // Tentative de connexion
             currentUser = authenticate();
             if (currentUser == nullptr) {
                 std::cout << "Voulez-vous réessayer ? (O/N) : ";
-                string retry;
+                std::string retry;
                 std::getline(cin, retry);
                 if (retry != "O" && retry != "o") {
                     running = false;
                 }
+                continue; // Retour au menu initial
+            }
+        } else if (choice == "2") {
+            // Quitter l'application
+            running = false;
+            continue;
+        } else {
+            std::cout << "Choix invalide. Veuillez entrer 1 ou 2.\n";
+            continue; // Revenir au menu initial
+        }
+
+        // Si connecté, afficher le menu utilisateur
+        while (currentUser != nullptr && running) {
+            std::cout << (currentUser->role == UserRole::ADMIN ? adminMenu : clientMenu);
+            std::string userAnswer;
+            std::getline(cin, userAnswer);
+
+            // Traitement des commandes
+            std::vector<std::string> userAnswerVector = utils::split(userAnswer, ' ');
+            if (userAnswerVector.empty()) {
                 continue;
             }
-        }
 
-        // Afficher le menu approprié
-        std::cout << (currentUser->role == UserRole::ADMIN ? adminMenu : clientMenu);
+            Command command = toCommand(userAnswerVector[0]);
+            string commandArg = "";
 
-        // Lire la commande
-        string userAnswer;
-        std::getline(cin, userAnswer);
+            if (userAnswerVector.size() > 2) {
+                commandArg = utils::join(userAnswerVector, ' ', 1);
+            } else if (userAnswerVector.size() == 2) {
+                commandArg = userAnswerVector[1];
+            }
 
-        std::vector<std::string> userAnswerVector = utils::split(userAnswer, ' ');
+            // Vérification des permissions
+            if (!isCommandAllowed(command, currentUser->role)) {
+                std::cout << "⚠️  Accès refusé : vous n'avez pas les permissions pour cette commande.\n";
+                continue;
+            }
 
-        if (userAnswerVector.empty()) {
-            continue;
-        }
-
-        Command command = toCommand(userAnswerVector[0]);
-        string commandArg = "";
-
-        if (userAnswerVector.size() > 2) {
-            commandArg = utils::join(userAnswerVector, ' ', 1);
-        } else if (userAnswerVector.size() == 2) {
-            commandArg = userAnswerVector[1];
-        }
-
-        // Vérifier les permissions
-        if (!isCommandAllowed(command, currentUser->role)) {
-            std::cout << "⚠️  Accès refusé : vous n'avez pas les permissions pour cette commande.\n";
-            continue;
-        }
-
-        // Exécuter la commande
-        switch (command) {
-            case Command::BYE:
-                running = false;
-                break;
-
-            case Command::LOGOUT:
-                std::cout << "Déconnexion...\n";
-                currentUser = nullptr;
-                break;
-
-            case Command::ADD:
-                library.addResource(commandArg);
-                break;
-
-            case Command::LOAD:
-                library.loadFromFile(commandArg);
-                break;
-
-            case Command::SAVE:
-                library.saveToFile(commandArg);
-                break;
-
-            case Command::CLEAR:
-                if (commandArg != "") {
-                    std::cout << "Argument inconnu\n";
+            // Exécution de la commande
+            switch (command) {
+                case Command::BYE:
+                    running = false;
                     break;
-                }
-                library.clearSearch();
-                std::cout << "Recherche réinitialisée.\n";
-                break;
 
-            case Command::LIST:
-                if (commandArg != "") {
-                    std::cout << "Argument inconnu\n";
+                case Command::LOGOUT:
+                    std::cout << "Déconnexion...\n";
+                    currentUser = nullptr;
                     break;
-                }
-                library.showDisplayedResources();
-                break;
 
-            case Command::SEARCH:
-                library.search(commandArg);
-                std::cout << "Recherche effectuée. " << library.getDisplayedElementsSize()
-                         << " éléments trouvés. Tapez LIST pour voir les résultats.\n";
-                break;
+                case Command::ADD:
+                    library.addResource(commandArg);
+                    break;
 
-            case Command::SHOW:
-                library.showDetailedDisplay(commandArg);
-                break;
+                case Command::LOAD:
+                    library.loadFromFile(commandArg);
+                    break;
 
-            case Command::DELETE:
-                library.deleteId(commandArg);
-                break;
+                case Command::SAVE:
+                    library.saveToFile(commandArg);
+                    break;
 
-            case Command::RESET:
-                library.reset();
-                std::cout << "Bibliothèque vidée.\n";
-                break;
+                case Command::CLEAR:
+                    if (commandArg != "") {
+                        std::cout << "Argument inconnu\n";
+                        break;
+                    }
+                    library.clearSearch();
+                    std::cout << "Recherche réinitialisée.\n";
+                    break;
 
-            case Command::BORROW:
-                library.borrow(commandArg);
-                break;
+                case Command::LIST:
+                    if (commandArg != "") {
+                        std::cout << "Argument inconnu\n";
+                        break;
+                    }
+                    library.showDisplayedResources();
+                    break;
 
-            case Command::RETURN:
-                library.returnResource(commandArg);
-                break;
+                case Command::SEARCH:
+                    library.search(commandArg);
+                    std::cout << "Recherche effectuée. " << library.getDisplayedElementsSize()
+                              << " éléments trouvés. Tapez LIST pour voir les résultats.\n";
+                    break;
 
-            case Command::Unknown:
-            default:
-                std::cout << "Commande non reconnue.\n";
-                break;
+                case Command::SHOW:
+                    library.showDetailedDisplay(commandArg);
+                    break;
+
+                case Command::DELETE:
+                    library.deleteId(commandArg);
+                    break;
+
+                case Command::RESET:
+                    library.reset();
+                    std::cout << "Bibliothèque vidée.\n";
+                    break;
+
+                case Command::BORROW:
+                    library.borrow(commandArg);
+                    break;
+
+                case Command::RETURN:
+                    library.returnResource(commandArg);
+                    break;
+
+                case Command::Unknown:
+                default:
+                    std::cout << "Commande non reconnue.\n";
+                    break;
+            }
         }
     }
 
