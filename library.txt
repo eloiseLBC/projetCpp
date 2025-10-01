@@ -1,0 +1,9 @@
+Review;AWGz4tPywp;Revue animalière;Gaël Argano;0;1987;15;Nature et Découverte;La nature est à portée de vol d'avion;Pétrole et carbone;2;[J'aime les animaux, Comment les végétariens pourrissent notre vie]
+VHS;B2C3D4E5;Documentaire animalier;Romain Des;0;520;AirbusProduction
+DigitalResource;C3D4E5F6;Oggy et les cafards;Jean Prout;0;video;2048;prout/jean/oggy.mp4
+Book;D4E5F6G7;Salanghea;Maëna Barré-Beylot;1;2023;350;Amour invisible;Résumé d'un livre plutôt lisable
+CD;E5F6G7H8;Compilation de musique classique;Beethoven (le chien);0;450;ZoomZoom;10
+DVD;F6G7H8I9;Film de science-fiction;Rozenn Peugeot;1;7200;La Roro Corporation;120
+Book;G7H8I9J0;Guide pratique de cuisine cannibale;Gildas Guyomard;0;2022;150;Cuisine du Monde;Recettes bonnes pour la santé de personne sur Terre
+VHS;H8I9J0K1;Film d'animation vintage;Cyril Mokrani;1;90;Animation pour Prout
+DigitalResource;I9J0K1L2;Manuel de formation aux prouts sous l'aisselle;Vaut mieux dehors que dedans;1;audio;120;path/to/manual.pdf
