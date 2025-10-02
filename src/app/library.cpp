@@ -181,7 +181,8 @@ void Library::loadFromFile(const std::string& fileName) {
     }
 
     // empty existing resources
-    allResources.clear();
+    // No.
+    // allResources.clear();
 
     try {
         std::string line;
